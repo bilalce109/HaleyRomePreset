@@ -18,12 +18,10 @@ dotenv.config();
 var PORT = process.env.PORT,
     DB_URL = process.env.DB_URL
 
-mongoose.connect(DB_URL, (err, db) => {
-    if (err) console.error(err);
-    let dbo = db.client.db('haleyromepreset');
-    MongoUtil.getInstance(dbo);
-    console.log('Database Connected!');
-});
+    mongoose.connect(DB_URL,
+        { useNewUrlParser: true, useUnifiedTopology: true },()=>{
+            console.log("Db connected");
+        });
 
 const app = express();
 app.use(express.json());
